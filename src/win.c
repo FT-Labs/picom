@@ -696,9 +696,11 @@ void win_process_update_flags(session_t *ps, struct managed_win *w) {
 
         // Determine if a window should animate
 		if (win_should_animate(ps, w)) {
-			if (w->pending_g.y < 0 && w->g.y > 0 && abs(w->pending_g.y - w->g.y) >= w->pending_g.height)
+			if ((w->pending_g.y < 0 && w->g.y > 0 && abs(w->pending_g.y - w->g.y) >= w->pending_g.height) ||
+			   (w->pending_g.x < 0 && w->g.x > 0 && abs(w->pending_g.x - w->g.x) >= w->pending_g.width))
 				w->dwm_mask = ANIM_PREV_TAG;
-			else if (w->pending_g.y > 0 && w->g.y < 0 && abs(w->pending_g.y - w->g.y) >= w->pending_g.height)
+			else if ((w->pending_g.y > 0 && w->g.y < 0 && abs(w->pending_g.y - w->g.y) >= w->pending_g.height) ||
+			        (w->pending_g.x > 0 && w->g.x < 0 && abs(w->pending_g.x - w->g.x) >= w->pending_g.width))
 				w->dwm_mask = ANIM_NEXT_TAG;
 
 			if (!was_visible || w->dwm_mask) {
