@@ -192,6 +192,7 @@ static const struct picom_option picom_options[] = {
     {"animation-clamping"          , no_argument      , 809, NULL          , "Enable/disable animation clamping. Disabling increases performance"},
     {"animation-for-open-window"   , required_argument, 810, NULL          , "Set animation for opening window (Check sample.conf for options)."},
     {"animation-for-transient-window", required_argument, 811, NULL        , "Set animation for transient (child) windows."},
+    {"animation-exclude"           , required_argument, 812, NULL          , "Specify a list of conditions of windows that should never be animated."},
 
 };
 // clang-format on
